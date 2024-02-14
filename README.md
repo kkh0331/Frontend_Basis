@@ -6,27 +6,27 @@
 ## 1. Mongoose 모델 스키마 구성하기
 - 두 개의 Collection을 구성하기
 - <b>Campaign</b>
-  |Column명|설명|
-  |:---|:---|
-  |campaignId|캠페인 id|
-  |categoryName|카테고리 이름|
-  |title|제목|
-  |totalBackedAmount|총보집금액(인원)|
-  |photoUrl|사진|
-  |nickname|닉네임|
-  |coreMessage|코어메시지|
-  |whenOpen|오픈일자|
-  |achivementRate|달성률|
+  |Column명|설명|저장명|type|
+  |:---|:---|:---|:---|
+  |campaignId|캠페인 id|campaignId|Number|
+  |categoryName|카테고리 이름|categoryName|String|
+  |title|제목|title|String|
+  |totalBackedAmount|총모집금액(인원)|totalBackedAmount|Number|
+  |photoUrl|사진|photoUrl|String|
+  |nickname|닉네임|nickName|String|
+  |coreMessage|코어메시지|coreMessage|String|
+  |whenOpen|오픈일자|whenOpen|Date|
+  |achivementRate|달성률|achievementRate|Number|
 - <b>Comment</b>
-  |Column명|설명|
-  |:---|:---|
-  |body|댓글본문|
-  |Campaign|캠페인|
-  |commentType|댓글타입|
-  |userNickname|유저닉네임|
-  |whenCreate|작성일자|
-  |commentReplys|대댓글|
-  |depth|대댓글 깊이|
+  |Column명|설명|저장명|type|
+  |:---|:---|:---|:---|
+  |body|댓글본문|body|String|
+  |Campaign|캠페인|commonId|mongoose.Id|
+  |commentType|댓글타입|commentType|String|
+  |userNickname|유저닉네임|nickName|String|
+  |whenCreated|작성일자|whenCreated|Date|
+  |commentReplys|대댓글|commentReplys|[this]|
+  |depth|대댓글 깊이|depth|Number|
 - [조건 1] Comment는 Campaign을 참조하도록 구성
 - [조건 2] 대댓글은 자기자신(Comment)을 참조하도록 구성(Self Reference)
 
@@ -53,7 +53,7 @@
 ## 5. 개발 순서
 |순서|개발 폴더|해야할 일|완료 날짜|
 |:---:|:---|:---|:---|
-|1|data-collection|와디즈 데이터를 수집하여 파일 형태로 먼저 local에 저장|아직 못함|
+|1|data-collection|와디즈 데이터를 수집하여 파일 형태로 먼저 local에 저장|02.14|
 |2|data-collection|저장된 데이터를 바탕으로 mongoose 모델 스키마를 정의|아직 못함|
 |3|data-collection|local에 저장된 데이터를 mongoDB에 저장|아직 못함|
 |4|back-end|express.js에 /api/campaign 구현|아직 못함|
