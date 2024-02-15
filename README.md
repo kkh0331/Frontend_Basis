@@ -6,29 +6,36 @@
 ## 1. Mongoose 모델 스키마 구성하기
 - 두 개의 Collection을 구성하기
 - <b>Campaign</b>
-  |Column명|설명|저장명|type|
-  |:---|:---|:---|:---|
-  |campaignId|캠페인 id|campaignId|Number|
-  |categoryName|카테고리 이름|categoryName|String|
-  |title|제목|title|String|
-  |totalBackedAmount|총모집금액(인원)|totalBackedAmount|Number|
-  |photoUrl|사진|photoUrl|String|
-  |nickname|닉네임|nickName|String|
-  |coreMessage|코어메시지|coreMessage|String|
-  |whenOpen|오픈일자|whenOpen|Date|
-  |achivementRate|달성률|achievementRate|Number|
+  |Column명|설명|type|
+  |:---|:---|:---|
+  |campaignId|캠페인 id|Number|
+  |categoryName|카테고리 이름|String|
+  |title|제목|String|
+  |totalBackedAmount|총모집금액(인원)|Number|
+  |photoUrl|사진|String|
+  |nickname|닉네임|String|
+  |coreMessage|코어메시지|String|
+  |whenOpen|오픈일자|Date|
+  |achivementRate|달성률|Number|
 - <b>Comment</b>
-  |Column명|설명|저장명|type|
-  |:---|:---|:---|:---|
-  |body|댓글본문|body|String|
-  |Campaign|캠페인|commonId|mongoose.Id|
-  |commentType|댓글타입|commentType|String|
-  |userNickname|유저닉네임|nickName|String|
-  |whenCreated|작성일자|whenCreated|Date|
-  |commentReplys|대댓글|commentReplys|[this]|
-  |depth|대댓글 깊이|depth|Number|
+  |Column명|설명|type|
+  |:---|:---|:---|
+  |body|댓글본문|String|
+  |Campaign|캠페인|mongoose.Id|
+  |commentType|댓글타입|String|
+  |userNickname|유저닉네임|String|
+  |whenCreated|작성일자|Date|
+  |commentReplys|대댓글|virtual로 구현|
+  |depth|대댓글 깊이|Number|
+  |parentComment|부모댓글|mongoose.Id|
+  |isDeleted|삭제여부|Boolean|
 - [조건 1] Comment는 Campaign을 참조하도록 구성
 - [조건 2] 대댓글은 자기자신(Comment)을 참조하도록 구성(Self Reference)
+  [수정사항]
+  - 요구사항이었던 `commentReplys`을 virtual로 구현
+  - 대신에, `parentComment`와 `isDeleted`을 추가
+  - `parentComment`는 대댓글인 경우에 부모 댓글을 가리킴
+  - `parentComment`만 추가할 경우, `댓글 > 대댓글 > 대대댓글 > ~~` 로 이어지게 되는데 중간에 한 댓글이 사라질 경우 그 자식 댓글은 접근할 방법이 애매해짐. 그리하여 `isDeleted`을 추가하여 DB에서는 삭제하지 않고 api에서는 보이지 않게 설정하려고 함. 나중에 DB에 공간이 부족할 경우, `isDeleted`로 접근하여 자식 댓글들을 전부 삭제할 수 있음.
 
 ## 2. 웹 데이터 수집하여 저장하기
 - [와디즈](https://www.wadiz.kr/web/wreward/main?order=support)에서 캠페인과 해당하는 캠페인의 댓글을 수집하여 (1)에서 만든 스키마에 저장
