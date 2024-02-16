@@ -8,7 +8,8 @@ const CommentSchema = new mongoose.Schema({
     },
     Campaign: {
         type : mongoose.Schema.Types.ObjectId,
-        ref : Campaign
+        ref : Campaign,
+        required : true,
     },
     commentType : String,
     userNickname : {
@@ -22,7 +23,8 @@ const CommentSchema = new mongoose.Schema({
     },
     parentComment : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : "Comment"
+        ref : "Comment",
+        default : null
     },
     isDeleted : {
         type : Boolean,

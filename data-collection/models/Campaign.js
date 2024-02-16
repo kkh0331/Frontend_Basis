@@ -21,12 +21,24 @@ const CampaignSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    totalBackedAmount : Number,
+    totalBackedAmount : {
+        type : Number,
+        default : 0
+    },
     photoUrl : String,
-    nickName : String,
+    nickName : {
+        type : String,
+        required : true
+    },
     coreMessage : String,
-    whenOpen : Date,
-    achievementRate : Number
+    whenOpen : {
+        type : Date,
+        default : Date.now()
+    },
+    achievementRate : {
+        type : Number,
+        default : 0
+    }
 })
 
 const Campaign = mongoose.model("Campaign", CampaignSchema);
