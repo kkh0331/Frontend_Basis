@@ -61,11 +61,16 @@
 |순서|개발 폴더|해야할 일|완료 날짜|
 |:---:|:---|:---|:---|
 |1|data-collection|와디즈 데이터를 수집하여 파일 형태로 먼저 local에 저장|02.14|
-|2|data-collection|저장된 데이터를 바탕으로 mongoose 모델 스키마를 정의|아직 못함|
-|3|data-collection|local에 저장된 데이터를 mongoDB에 저장|아직 못함|
+|2|data-collection|저장된 데이터를 바탕으로 mongoose 모델 스키마를 정의|02.16|
+|3|data-collection|local에 저장된 데이터를 mongoDB에 저장|02.16|
 |4|back-end|express.js에 /api/campaign 구현|아직 못함|
 |5|back-end|express.js에 /api/:campaignId 구현|아직 못함|
 |6|back-end|express.js에 /api/:campaignId/comment 구현|아직 못함|
 |7|back-end|express.js에 /api/:campaignId/comment/:commentId 구현|아직 못함|
 |8|front-end|부트스트랩 이용해서 샘플 데이터로 UI 적용|아직 못함|
 |9|front-end|/api/campaign api을 이용해서 데이터 적용|아직 못함|
+
+## 6. 과제 진행 중에 특이사항
+- 데이터 수집은 2월 14일 수요일 00시 10분 기준
+- Campaign models에 기재된 campaignId 같은 경우에는 수집된 데이터의 campaignId을 저장했지만 Comment models에서 Campaign에 대한 참조 id을 지정할 때에는 mongoDB._id을 사용함. 
+  - 그리하여 campaignId가 어떻게 지정되는지 모르기 때문에 추후 Campaign을 추가하게 될 경우에는 campaignId을 제외하고 저장하게 될 것 같아서 `campaignId`는 삭제해도 될 것 같음.
