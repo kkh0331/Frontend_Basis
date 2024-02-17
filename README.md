@@ -63,7 +63,7 @@
 |1|data-collection|와디즈 데이터를 수집하여 파일 형태로 먼저 local에 저장|02.14|
 |2|data-collection|저장된 데이터를 바탕으로 mongoose 모델 스키마를 정의|02.16|
 |3|data-collection|local에 저장된 데이터를 mongoDB에 저장|02.16|
-|4|back-end|express.js에 /api/campaign 구현|아직 못함|
+|4|back-end|express.js에 /api/campaign 구현|02.17|
 |5|back-end|express.js에 /api/:campaignId 구현|아직 못함|
 |6|back-end|express.js에 /api/:campaignId/comment 구현|아직 못함|
 |7|back-end|express.js에 /api/:campaignId/comment/:commentId 구현|아직 못함|
