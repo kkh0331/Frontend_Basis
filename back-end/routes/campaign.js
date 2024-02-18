@@ -49,4 +49,27 @@ router.post('/:campaignId/comment', function(req, res, next){
   })
 })
 
+router.post('/:campaignId/comment/:commentId', async function(req, res, next){
+  const {campaignId, commentId} = req.params;
+  const {body, userNickname, commentType} = req.body;
+  const parentCommentDepth = await Comment.findById(commentId).then(data => {
+    console.log(data);
+    return data.depth
+  }).catch(err => res.send(err))
+  const inputData = {
+    body : body,
+    Campaign : campaignId,
+    commentType : commentType || null,
+    userNickname : userNickname,
+    depth : parentCommentDepth+1,
+    parentComment : commentId
+  }
+  Comment.create(inputData).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.send(err);
+  })
+})
+
+
 module.exports = router;
