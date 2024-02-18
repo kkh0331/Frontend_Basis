@@ -67,7 +67,7 @@
 |5|back-end|express.js에 /api/:campaignId 구현|02.18|
 |6|back-end|express.js에 /api/:campaignId/comment 구현|02.18|
 |7|back-end|express.js에 /api/:campaignId/comment/:commentId 구현|02.18|
-|8|front-end|부트스트랩 이용해서 샘플 데이터로 UI 적용|아직 못함|
+|8|front-end|부트스트랩 이용해서 샘플 데이터로 UI 적용|02.18|
 |9|front-end|/api/campaign api을 이용해서 데이터 적용|02.18|
 
 ## 6. 과제 진행 중에 특이사항
