@@ -1,6 +1,7 @@
 var express = require('express');
 const { Campaign } = require('../models/Campain');
 const { Comment } = require('../models/Comment');
+const { convertToTrees } = require('../utils/convertToTrees');
 var router = express.Router();
 
 //Campagin에 대한 리스트를 조회할 것
@@ -17,10 +18,11 @@ router.get('/:campaignId', function(req, res, next) {
     const {campaignId} = req.params
     Promise.all([
       Campaign.findById(campaignId),
-      Comment.find({Campaign:campaignId}).sort({"whenCreated":1})
+      Comment.find({Campaign:campaignId, isDeleted:false}).sort({"whenCreated":1})
     ])
     .then(([campaign, comments]) => {
-      return res.json({campaign, comments});
+      const commentTrees = convertToTrees(comments, '_id', 'parentComment', 'commentReplys')
+      return res.json({campaign, comments:commentTrees});
     })
     .catch((err) => {
       return res.json(err);
