@@ -29,4 +29,24 @@ router.get('/:campaignId', function(req, res, next) {
     })
 })
 
+// 해당 Campagin에 대한 댓글을 임의로 달 수 있도록 할 것
+// 댓글 본문과 유저닉네임, 대댓글 깊이는 필수로 입력
+router.post('/:campaignId/comment', function(req, res, next){
+  console.log("댓글 추가")
+  const {campaignId} = req.params;
+  const {body, userNickname, commentType} = req.body;
+  const inputData = {
+    body : body,
+    Campaign : campaignId,
+    commentType : commentType || null,
+    userNickname : userNickname,
+    depth : 0
+  }
+  Comment.create(inputData).then(data => {
+    res.json(data)
+  }).catch(err => {
+    res.send(err);
+  })
+})
+
 module.exports = router;

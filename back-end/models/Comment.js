@@ -15,7 +15,10 @@ const CommentSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    whenCreated : Date,
+    whenCreated : {
+        type : Date,
+        default : Date.now()
+    },
     depth : {
         type : Number,
         required : true
