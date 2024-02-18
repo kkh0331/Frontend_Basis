@@ -46,13 +46,13 @@
 ## 3. Express.js를 활용하여 API 구성하기
 |Method|Url|설명|
 |:---|:---|:---|
-|GET|/api/campaign|Campagin에 대한 리스트를 조회할 것|
-|GET|/api/:campaignId|Campagin 한 개에 대한 데이터와 댓글 전부를 함께 조회할 것|
-|POST|/api/:campaignId/comment|해당 Campagin에 대한 댓글을 임의로 달 수 있도록 할 것(댓글 본문과 유저닉네임, 대댓글 깊이는 필수로 입력)
+|GET|/api/campaign|Campaign에 대한 리스트를 조회할 것|
+|GET|/api/:campaignId|Campaign 한 개에 대한 데이터와 댓글 전부를 함께 조회할 것|
+|POST|/api/:campaignId/comment|해당 Campaign에 대한 댓글을 임의로 달 수 있도록 할 것(댓글 본문과 유저닉네임, 대댓글 깊이는 필수로 입력)
 |POST|/api/:campaignId/comment/:commentId|해당 캠페인과 Comment에 대한 대댓글을 달 수 있도록 할 것(댓글 본문과 유저닉네임, 대댓글 id와 대댓글 깊이는 필수로 입력되도록 할 것)
 
 ## 4. React에서 캠페인 리스트 Rendering하기
-- 위 내용에서 /api/campagin에 대한 내용을 (그림 A, 그림 B) 형태로 Rendering 하기
+- 위 내용에서 /api/campaign에 대한 내용을 (그림 A, 그림 B) 형태로 Rendering 하기
   - [와디즈](https://www.wadiz.kr/web/wreward/main?order=support)에 접속했을 때 카드 형태
 - [조건 1] Rendering 내용은 다음 필드만 있으면 된다.
 - [조건 2] 디자인은 신경쓰지 않습니다만 레이아웃 형태는 갖춰주세요(부트스트랩의 Card 형태)
@@ -65,7 +65,7 @@
 |3|data-collection|local에 저장된 데이터를 mongoDB에 저장|02.16|
 |4|back-end|express.js에 /api/campaign 구현|02.17|
 |5|back-end|express.js에 /api/:campaignId 구현|02.18|
-|6|back-end|express.js에 /api/:campaignId/comment 구현|아직 못함|
+|6|back-end|express.js에 /api/:campaignId/comment 구현|02.18|
 |7|back-end|express.js에 /api/:campaignId/comment/:commentId 구현|아직 못함|
 |8|front-end|부트스트랩 이용해서 샘플 데이터로 UI 적용|아직 못함|
 |9|front-end|/api/campaign api을 이용해서 데이터 적용|아직 못함|
@@ -75,3 +75,4 @@
 - Campaign models에 기재된 campaignId 같은 경우에는 수집된 데이터의 campaignId을 저장했지만 Comment models에서 Campaign에 대한 참조 id을 지정할 때에는 mongoDB._id을 사용함. 
   - 그리하여 campaignId가 어떻게 지정되는지 모르기 때문에 추후 Campaign을 추가하게 될 경우에는 campaignId을 제외하고 저장하게 될 것 같아서 `campaignId`는 삭제해도 될 것 같음.
 - `/api/:campaignId`에서 `commentReplys`을 위해서 `virtual`과 `populate`을 이용하여 출력하게 될 경우에는 대댓글의 깊이(depth)가 2만 되어도 출력되지 않은 상황이 발생하여 대댓글이 깊이가 길어져도 반영될 수 있는 `convertToTrees()`을 추가했음.
+- 요구사항에 `/api/:campaignId/comment`에서 `대댓글 깊이는 필수로 입력`이라고 나와 있었지만 해당 Campaign에 대한 댓글이므로 깊이는 무조건 0이라고 생각하고 개발을 진행했음.
