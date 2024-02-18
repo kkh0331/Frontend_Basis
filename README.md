@@ -68,7 +68,7 @@
 |6|back-end|express.js에 /api/:campaignId/comment 구현|02.18|
 |7|back-end|express.js에 /api/:campaignId/comment/:commentId 구현|02.18|
 |8|front-end|부트스트랩 이용해서 샘플 데이터로 UI 적용|아직 못함|
-|9|front-end|/api/campaign api을 이용해서 데이터 적용|아직 못함|
+|9|front-end|/api/campaign api을 이용해서 데이터 적용|02.18|
 
 ## 6. 과제 진행 중에 특이사항
 - 데이터 수집은 2월 14일 수요일 00시 10분 기준
@@ -77,3 +77,4 @@
 - `/api/:campaignId`에서 `commentReplys`을 위해서 `virtual`과 `populate`을 이용하여 출력하게 될 경우에는 대댓글의 깊이(depth)가 2만 되어도 출력되지 않은 상황이 발생하여 대댓글이 깊이가 길어져도 반영될 수 있는 `convertToTrees()`을 추가했음.
 - 요구사항에 `/api/:campaignId/comment`에서 `대댓글 깊이는 필수로 입력`이라고 나와 있었지만 해당 Campaign에 대한 댓글이므로 깊이는 무조건 0이라고 생각하고 개발을 진행했음.
 - 요구사항에 `/api/:campaignId/comment/:commentId`에서 `대댓글 깊이는 필수로 입력`이라고 나와 있었지만 대댓글이므로 `commentId의 depth`에다가 1만 더해주면 해당 depth가 된다고 생각하고 개발을 진행했음.
+- 개발 순서를 `8 -> 9`로 하려고 했는데 데이터를 미리 받아오는 것이 편하다고 생각해서 순서를 `9 -> 8`로 바꿈
