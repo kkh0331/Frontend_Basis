@@ -11,9 +11,9 @@ function convertToTrees(array, idFieldName, parentIdFieldName, childrenFieldName
                     } else {
                         elem[childrenFieldName] = [cloned[i]]
                     }
-                    cloned.splice(i, 1);
                 }
             })
+            cloned.splice(i, 1);
         }
     }
     return cloned;
