@@ -53,7 +53,6 @@ router.post('/:campaignId/comment/:commentId', async function(req, res, next){
   const {campaignId, commentId} = req.params;
   const {body, userNickname, commentType} = req.body;
   const parentCommentDepth = await Comment.findById(commentId).then(data => {
-    console.log(data);
     return data.depth
   }).catch(err => res.send(err))
   const inputData = {
